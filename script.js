@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showSuccessMessage(message) {
     feedbackDiv.textContent = message;
-    feedbackDiv.style.color = "green";
+    feedbackDiv.style.color = "#28a745";
     feedbackDiv.style.backgroundColor = "#e6ffe6";
-    feedbackDiv.style.border = "1px solid green";
+    feedbackDiv.style.border = "1px solid #28a745";
     feedbackDiv.style.display = "block";
   }
 
