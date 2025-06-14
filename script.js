@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
     feedbackDiv.style.display = "block";
   }
 
-  function showErrorMessage(message) {
-    feedbackDiv.innerHTML = message.join("<br>");
+  function showErrorMessage(messages) {
+    feedbackDiv.innerHTML = messages.join("<br>");
     feedbackDiv.style.color = "#dc3545";
     feedbackDiv.style.backgroundColor = "#ffbaba";
     feedbackDiv.style.border = "1px solid #dc3545";
