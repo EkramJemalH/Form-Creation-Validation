@@ -44,62 +44,61 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateForm() {
     clearFeedback();
 
-    let isValid = true;
-
+    let messages = [];
     const usernameValue = usernameInput.value.trim();
     if (usernameValue === "") {
-      usernameError.textContent = "Username is required.";
-      isValid = false;
+      messages.push("Username is required.");
+      usernameInput.classList.add("input-error");
     } else if (usernameValue.length < 3) {
-      usernameError.textContent = "Username must be at least 3 characters.";
-      isValid = false;
+      messages.push("Username must be at least 3 characters.");
+      usernameInput.classList.add("input-error");
     } else if (usernameValue.length > 20) {
-      usernameError.textContent = "Username cannot exceed 20 characters.";
-      isValid = false;
-    } else if (!isNaN(Number(usernameValue))) {
-      usernameError.textContent = "Username cannot be purely numeric.";
-      isValid = false;
+      messages.push("Username cannot exceed 20 characters.");
+      usernameInput.classList.add("input-error");
+    } else if (!isNaN(Number(usernameValue)) && usernameValue !== "") {
+      messages.push("Username cannot be purely numeric.");
+      usernameInput.classList.add("input-error");
     }
     const emailValue = emailInput.value.trim();
     if (emailValue === "") {
-      emailError.textContent = "Email is required.";
-      isValid = false;
+      messages.push("Email is required.");
+      emailInput.classList.add("input-error");
     } else if (!emailValue.includes("@") || !emailValue.includes(".")) {
-      emailError.textContent =
-        "Please enter a valid email address (missing @ or .).";
-      isValid = false;
+      messages.push("Please enter a valid email address (missing @ or .).");
+      emailInput.classList.add("input-error");
     } else if (
       emailValue.indexOf("@") === 0 ||
       emailValue.indexOf(".") === emailValue.length - 1 ||
       emailValue.indexOf("@") > emailValue.lastIndexOf(".")
     ) {
-      emailError.textContent = "Invalid email format (position of @ or .).";
-      isValid = false;
+      messages.push("Invalid email format (position of @ or .).");
+      emailInput.classList.add("input-error");
     }
     const passwordValue = passwordInput.value.trim();
     if (passwordValue === "") {
-      passwordError.textContent = "Password is required.";
-      isValid = false;
+      messages.push("Password is required.");
+      passwordInput.classList.add("input-error");
     } else if (passwordValue.length < 8) {
-      passwordError.textContent =
-        "Password must be at least 8 characters long.";
-      isValid = false;
+      messages.push("Password must be at least 8 characters long.");
+      passwordInput.classList.add("input-error");
     } else if (passwordValue.length > 25) {
-      passwordError.textContent = "Password is too long (max 25 characters).";
-      isValid = false;
+      messages.push("Password is too long (max 25 characters).");
+      passwordInput.classList.add("input-error");
     }
-    return isValid;
+
+    return messages;
   }
   registrationForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     const formIsValid = validateForm();
 
-    if (formIsValid) {
+    if (formIsValid.length === 0) {
       showSuccessMessage("Registration successful!");
       registrationForm.reset();
     } else {
       showErrorMessage("Please correct the errors in the form.");
+      showErrorMessage(formIsValid);
     }
   });
 });
