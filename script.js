@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showErrorMessage(messages) {
-    feedbackDiv.innerHTML = message.join("<br>");
+    feedbackDiv.innerHTML = messages.join("<br>");
     feedbackDiv.style.color = "#dc3545";
     feedbackDiv.style.backgroundColor = "#ffbaba";
     feedbackDiv.style.border = "1px solid #dc3545";
