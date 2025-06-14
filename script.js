@@ -8,13 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const passwordError = document.getElementById("passwordError");
 
   const formFeedback = document.getElementById("form-feedback");
+  function clearFeedback() {
+    formFeedback.textContent = "";
+    formFeedback.style.display = "none";
+    formFeedback.style.backgroundColor = "";
+    formFeedback.style.border = "";
 
-  function clearErrorsAndFeedback() {
+    // Also clear individual input error styles if they were applied
+    usernameInput.classList.remove("input-error");
+    emailInput.classList.remove("input-error");
+    passwordInput.classList.remove("input-error");
+
+    // Clear individual error message spans (though we're consolidating messages, good to reset)
     usernameError.textContent = "";
     emailError.textContent = "";
     passwordError.textContent = "";
-    formFeedback.textContent = "";
-    formFeedback.style.display = "none";
   }
 
   function showSuccessMessage(message) {
@@ -34,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function validateForm() {
-    clearErrorsAndFeedback();
+    clearFeedback();
 
     let isValid = true;
 
