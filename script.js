@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const emailError = document.getElementById("emailError");
   const passwordError = document.getElementById("passwordError");
 
-  const formFeedback = document.getElementById("form-feedback");
+  const feedbackDiv = document.getElementById("form-feedback");
   function clearFeedback() {
-    formFeedback.textContent = "";
-    formFeedback.style.display = "none";
-    formFeedback.style.backgroundColor = "";
-    formFeedback.style.border = "";
+    feedbackDiv.textContent = "";
+    feedbackDiv.style.display = "none";
+    feedbackDiv.style.backgroundColor = "";
+    feedbackDiv.style.border = "";
 
     // Also clear individual input error styles if they were applied
     usernameInput.classList.remove("input-error");
@@ -26,19 +26,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showSuccessMessage(message) {
-    formFeedback.textContent = message;
-    formFeedback.style.color = "green";
-    formFeedback.style.backgroundColor = "#e6ffe6";
-    formFeedback.style.border = "1px solid green";
-    formFeedback.style.display = "block";
+    feedbackDiv.textContent = message;
+    feedbackDiv.style.color = "green";
+    feedbackDiv.style.backgroundColor = "#e6ffe6";
+    feedbackDiv.style.border = "1px solid green";
+    feedbackDiv.style.display = "block";
   }
 
   function showErrorMessage(message) {
-    formFeedback.textContent = message;
-    formFeedback.style.color = "red";
-    formFeedback.style.backgroundColor = "#ffbaba";
-    formFeedback.style.border = "1px solid red";
-    formFeedback.style.display = "block";
+    feedbackDiv.innerHTML = message.join("<br>");
+    feedbackDiv.style.color = "#dc3545";
+    feedbackDiv.style.backgroundColor = "#ffbaba";
+    feedbackDiv.style.border = "1px solid #dc3545";
+    feedbackDiv.style.display = "block";
   }
 
   function validateForm() {
